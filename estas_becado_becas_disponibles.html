@@ -1,0 +1,571 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>¿A qué Becas puedo aplicar? - ¿Estás Becado?</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <style>
+    :root {
+      --color-bg: #ffffff;
+      --color-text: #222224;
+      --color-secondary: #5e5e5e;
+      --color-accent: #0057b7;
+      --color-border: #e0e0e0;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: var(--color-bg);
+      color: var(--color-text);
+      margin: 0;
+      padding: 0;
+      line-height: 1.6;
+      transition: background 0.3s, color 0.3s;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    header {
+      text-align: center;
+      padding: 1.5rem 1rem 0.5rem;
+      border-bottom: 1px solid var(--color-border);
+    }
+
+    header svg {
+      height: 60px;
+      fill: var(--color-accent);
+    }
+
+    nav {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background-color: #f8f8f8;
+      border-top: 1px solid var(--color-border);
+      border-bottom: 1px solid var(--color-border);
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      padding: 0.5rem;
+    }
+
+    nav a {
+      text-decoration: none;
+      color: var(--color-text);
+      padding: 0.75rem 1.25rem;
+      font-weight: 600;
+      border-radius: 8px;
+      transition: background 0.2s, color 0.2s;
+    }
+
+    nav a:hover {
+      background-color: var(--color-accent);
+      color: #fff;
+    }
+
+    .theme-toggle {
+      margin-left: auto;
+      padding-right: 1rem;
+      font-size: 1.2rem;
+      cursor: pointer;
+      color: var(--color-text);
+    }
+
+    main {
+      max-width: 1200px;
+      margin: 3rem auto;
+      padding: 0 1.5rem;
+      flex: 1;
+    }
+
+    .content-wrapper {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 3rem;
+    }
+
+    .left-section {
+      order: 1;
+    }
+
+    .right-section {
+      order: 2;
+    }
+
+    h2 {
+      font-family: 'Poppins', sans-serif;
+      color: var(--color-text);
+      margin-top: 0;
+      margin-bottom: 2rem;
+      text-align: center;
+      font-size: 2.5rem;
+    }
+
+    h3 {
+      font-family: 'Poppins', sans-serif;
+      color: var(--color-text);
+      margin-top: 0;
+      margin-bottom: 1.5rem;
+      text-align: center;
+      font-size: 1.75rem;
+    }
+
+    /* Becas Grid */
+    .becas-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1.5rem;
+      margin-bottom: 2rem;
+    }
+
+    .beca-card {
+      background-color: #fff;
+      border: 1px solid var(--color-border);
+      border-radius: 12px;
+      padding: 1.5rem;
+      text-align: center;
+      transition: transform 0.2s, box-shadow 0.2s;
+      cursor: pointer;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .beca-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+    }
+
+    .beca-logo {
+      width: 100%;
+      height: 100px;
+      background-color: #f0f0f0;
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 1rem;
+      font-size: 0.8rem;
+      color: var(--color-secondary);
+      border: 2px dashed var(--color-border);
+    }
+
+    .beca-name {
+      font-weight: 600;
+      font-size: 0.95rem;
+      color: var(--color-text);
+      line-height: 1.4;
+    }
+
+    /* Formulario de calificación */
+    .calificacion-section {
+      background-color: #fafafa;
+      border: 1px solid var(--color-border);
+      border-radius: 12px;
+      padding: 2rem;
+    }
+
+    .form-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 1.5rem;
+      margin-bottom: 2rem;
+    }
+
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+
+    .form-group label {
+      font-weight: 600;
+      color: var(--color-text);
+      font-size: 0.95rem;
+    }
+
+    .form-group input,
+    .form-group select {
+      padding: 0.75rem 1rem;
+      border: 1px solid var(--color-border);
+      border-radius: 8px;
+      font-size: 1rem;
+      font-family: 'Inter', sans-serif;
+      background-color: var(--color-bg);
+      color: var(--color-text);
+      transition: border-color 0.2s;
+    }
+
+    .form-group input:focus,
+    .form-group select:focus {
+      outline: none;
+      border-color: var(--color-accent);
+    }
+
+    .form-group input[type="number"] {
+      -moz-appearance: textfield;
+    }
+
+    .form-group input[type="number"]::-webkit-inner-spin-button,
+    .form-group input[type="number"]::-webkit-outer-spin-button {
+      -webkit-appearance: none;
+      margin: 0;
+    }
+
+    .submit-button {
+      display: inline-block;
+      background-color: var(--color-accent);
+      color: white;
+      padding: 0.75rem 2.5rem;
+      border-radius: 8px;
+      font-weight: 600;
+      transition: background 0.3s;
+      border: none;
+      cursor: pointer;
+      font-size: 1rem;
+      font-family: 'Inter', sans-serif;
+      margin: 0 auto;
+      display: block;
+    }
+
+    .submit-button:hover {
+      background-color: #00429a;
+    }
+
+    footer {
+      border-top: 1px solid var(--color-border);
+      text-align: center;
+      padding: 1.5rem 1rem;
+      font-size: 0.9rem;
+      color: var(--color-secondary);
+      background-color: #fafafa;
+      margin-top: auto;
+    }
+
+    .footer-socials {
+      margin-top: 0.5rem;
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+    }
+
+    .footer-socials i {
+      cursor: pointer;
+      font-size: 1.25rem;
+      color: var(--color-secondary);
+      transition: color 0.3s;
+    }
+
+    .footer-socials i:hover {
+      color: var(--color-accent);
+    }
+
+    /* Dark mode */
+    body.dark {
+      --color-bg: #222224;
+      --color-text: #f8f8f8;
+      --color-secondary: #bdbdbd;
+      --color-border: #3a3a3a;
+      background-color: var(--color-bg);
+      color: var(--color-text);
+    }
+
+    body.dark nav {
+      background-color: #2c2c2c;
+    }
+
+    body.dark nav a:hover {
+      background-color: var(--color-accent);
+    }
+
+    body.dark footer {
+      background-color: #2a2a2a;
+    }
+
+    body.dark .beca-card {
+      background-color: #2c2c2c;
+    }
+
+    body.dark .beca-logo {
+      background-color: #1a1a1a;
+    }
+
+    body.dark .calificacion-section {
+      background-color: #2c2c2c;
+    }
+
+    body.dark .form-group input,
+    body.dark .form-group select {
+      background-color: #1a1a1a;
+      border-color: var(--color-border);
+      color: var(--color-text);
+    }
+
+    /* Desktop Layout */
+    @media (min-width: 1024px) {
+      .content-wrapper {
+        grid-template-columns: 1fr 400px;
+        gap: 3rem;
+        align-items: start;
+      }
+
+      .left-section {
+        order: 1;
+      }
+
+      .right-section {
+        order: 2;
+      }
+
+      .becas-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1.5rem;
+      }
+
+      .form-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    /* Tablet Layout */
+    @media (min-width: 768px) and (max-width: 1023px) {
+      .content-wrapper {
+        grid-template-columns: 1fr;
+      }
+
+      .becas-grid {
+        grid-template-columns: repeat(3, 1fr);
+      }
+
+      .form-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    /* Mobile Layout */
+    @media (max-width: 767px) {
+      nav {
+        flex-direction: column;
+        align-items: stretch;
+      }
+
+      main {
+        padding: 0 1rem;
+        margin: 2rem auto;
+      }
+
+      h2 {
+        font-size: 1.75rem;
+      }
+
+      h3 {
+        font-size: 1.5rem;
+      }
+
+      .content-wrapper {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+      }
+
+      .becas-grid {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+      }
+
+      .calificacion-section {
+        padding: 1.5rem;
+      }
+
+      .form-grid {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+      }
+
+      .beca-card {
+        padding: 1.25rem;
+      }
+
+      .beca-logo {
+        height: 80px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 60">
+      <text x="0" y="45" font-family="Poppins" font-size="36" fill="currentColor">¿Estás <tspan fill="var(--color-accent)">Becado?</tspan></text>
+    </svg>
+  </header>
+
+  <nav>
+    <a href="estas_becado_home.html">¿Estás Becado?</a>
+    <a href="estas_becado_becas_disponibles.html">¿A qué Becas puedo aplicar?</a>
+    <a href="#">Trabajos Finales</a>
+    <div class="theme-toggle" onclick="toggleTheme()">🌙</div>
+  </nav>
+
+  <main>
+    <div class="content-wrapper">
+      <!-- Left Section: Becas disponibles -->
+      <div class="left-section">
+        <h2>Becas disponibles</h2>
+
+        <div class="becas-grid">
+          <div class="beca-card">
+            <div class="beca-logo">Logo Beca</div>
+            <div class="beca-name">Becas doctorales CONICET</div>
+          </div>
+
+          <div class="beca-card">
+            <div class="beca-logo">Logo Beca</div>
+            <div class="beca-name">Becas Fondo Único UNC</div>
+          </div>
+
+          <div class="beca-card">
+            <div class="beca-logo">Logo Beca</div>
+            <div class="beca-name">Becas nivel superior CABA</div>
+          </div>
+
+          <div class="beca-card">
+            <div class="beca-logo">Logo Beca</div>
+            <div class="beca-name">Becas Juan Manuel Belgrano</div>
+          </div>
+
+          <div class="beca-card">
+            <div class="beca-logo">Logo Beca</div>
+            <div class="beca-name">Becas PICT</div>
+          </div>
+
+          <div class="beca-card">
+            <div class="beca-logo">Logo Beca</div>
+            <div class="beca-name">Becas Progresar</div>
+          </div>
+
+          <div class="beca-card">
+            <div class="beca-logo">Logo Beca</div>
+            <div class="beca-name">Becas postdoctorales CONICET</div>
+          </div>
+
+          <div class="beca-card">
+            <div class="beca-logo">Logo Beca</div>
+            <div class="beca-name">Becas Escolares BA</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right Section: Formulario -->
+      <div class="right-section">
+        <h3>¿A que becas califico?</h3>
+
+        <div class="calificacion-section">
+          <form>
+            <div class="form-grid">
+              <div class="form-group">
+                <label for="edad">Edad</label>
+                <input type="number" id="edad" name="edad" value="22" min="0" max="120">
+              </div>
+
+              <div class="form-group">
+                <label for="nivel">Nivel de estudios</label>
+                <select id="nivel" name="nivel">
+                  <option value="">Seleccione una opción</option>
+                  <option value="secundaria">Secundaria</option>
+                  <option value="licenciatura">Licenciatura</option>
+                  <option value="posgrado">Posgrado</option>
+                  <option value="doctorado">Doctorado</option>
+                </select>
+              </div>
+
+              <div class="form-group">
+                <label for="provincia">Provincia</label>
+                <select id="provincia" name="provincia">
+                  <option value="">Seleccione una opción</option>
+                  <option value="ba">Buenos Aires</option>
+                  <option value="cordoba">Córdoba</option>
+                  <option value="mendoza">Mendoza</option>
+                  <option value="santafe">Santa Fe</option>
+                  <option value="caba">CABA</option>
+                </select>
+              </div>
+
+              <div class="form-group">
+                <label for="institucion1">Institución de estudio</label>
+                <select id="institucion1" name="institucion1">
+                  <option value="">Seleccione una opción</option>
+                  <option value="unc">Universidad Nacional de Córdoba</option>
+                  <option value="uba">Universidad de Buenos Aires</option>
+                  <option value="unlp">Universidad Nacional de La Plata</option>
+                  <option value="utn">Universidad Tecnológica Nacional</option>
+                </select>
+              </div>
+
+              <div class="form-group">
+                <label for="institucion2">Institución de estudio</label>
+                <select id="institucion2" name="institucion2">
+                  <option value="">Seleccione una opción</option>
+                  <option value="unc">Universidad Nacional de Córdoba</option>
+                  <option value="uba">Universidad de Buenos Aires</option>
+                  <option value="unlp">Universidad Nacional de La Plata</option>
+                  <option value="utn">Universidad Tecnológica Nacional</option>
+                </select>
+              </div>
+
+              <div class="form-group">
+                <label for="tipo">Tipo de beca buscada</label>
+                <select id="tipo" name="tipo">
+                  <option value="">Seleccione una opción</option>
+                  <option value="nacional">Nacional</option>
+                  <option value="provincial">Provincial</option>
+                  <option value="institucional">Institucional</option>
+                  <option value="privada">Privada</option>
+                </select>
+              </div>
+
+              <div class="form-group">
+                <label for="campo">Campo de estudio o interés</label>
+                <select id="campo" name="campo">
+                  <option value="">Seleccione una opción</option>
+                  <option value="ingenieria">Ingeniería</option>
+                  <option value="ciencias">Ciencias Exactas</option>
+                  <option value="sociales">Ciencias Sociales</option>
+                  <option value="medicina">Medicina</option>
+                  <option value="arte">Arte y Diseño</option>
+                </select>
+              </div>
+            </div>
+
+            <button type="submit" class="submit-button">Buscar</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    <p>© 2025 ¿Estás Becado? - Todos los derechos reservados.</p>
+    <div class="footer-socials">
+      <i data-lucide="facebook"></i>
+      <i data-lucide="twitter"></i>
+      <i data-lucide="instagram"></i>
+      <i data-lucide="linkedin"></i>
+    </div>
+  </footer>
+
+  <script>
+    lucide.createIcons();
+
+    function toggleTheme() {
+      document.body.classList.toggle('dark');
+      const icon = document.querySelector('.theme-toggle');
+      icon.textContent = document.body.classList.contains('dark') ? '☀️' : '🌙';
+    }
+  </script>
+</body>
+</html>
