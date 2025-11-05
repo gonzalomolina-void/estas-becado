@@ -4,6 +4,11 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Inicio - ¿Estás Becado?</title>
+  <link rel="apple-touch-icon" sizes="180x180" href="images/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="images/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="images/favicon-16x16.png">
+  <link rel="manifest" href="images/site.webmanifest">
+  <link rel="shortcut icon" href="images/favicon.ico">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Poppins:wght@400;600&display=swap" rel="stylesheet">
   <script src="https://unpkg.com/lucide@latest"></script>
   <style>
@@ -47,10 +52,17 @@
       font-weight: 600;
       color: var(--color-text);
       text-decoration: none;
+      display: inline-block;
     }
-
+    
     header .logo span {
       color: var(--color-accent);
+    }
+
+    header .logo-img {
+      height: 50px; /* Adjust as needed */
+      width: auto;
+      vertical-align: middle;
     }
 
     nav {
@@ -222,7 +234,10 @@
 </head>
 <body>
   <header>
-    <a href="estas_becado_home_v2.html" class="logo">¿Estás <span>Becado?</span></a>
+    <a href="estas_becado_home_v2.html" class="logo">
+      <img src="images/logo.png" alt="¿Estás Becado?" class="logo-img">
+      ¿Estás <span>Becado?</span>      
+    </a>
   </header>
 
   <nav>
@@ -250,7 +265,7 @@
     <p>© 2025 ¿Estás Becado? - Todos los derechos reservados.</p>
     <div class="footer-socials">
       <i data-lucide="facebook"></i>
-      <i data-lucide="twitter"></i>
+      <i data-lucide="x"></i>
       <i data-lucide="instagram"></i>
       <i data-lucide="linkedin"></i>
     </div>
