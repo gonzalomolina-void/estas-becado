@@ -245,6 +245,48 @@
       background-color: #003366;
     }
 
+    .table-container {
+      overflow-x: auto;
+      border: 1px solid var(--color-border);
+      border-radius: 8px;
+      background-color: var(--color-bg);
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.9rem;
+    }
+    thead {
+      background-color: #f8f8f8;
+    }
+    th,
+    td {
+      padding: 1rem;
+      text-align: left;
+      border-bottom: 1px solid var(--color-border);
+    }
+    th {
+      font-weight: 600;
+    }
+    tbody tr:hover {
+      background-color: #fafafa;
+    }
+    tbody tr:last-child td {
+      border-bottom: none;
+    }
+    .status {
+      font-weight: 600;
+    }
+    .status-aprobado {
+      color: var(--color-success);
+    }
+    .status-evaluacion {
+      color: var(--color-warning);
+    }
+    .status-rechazado {
+      color: var(--color-danger);
+    }
+
     footer {
       border-top: 1px solid var(--color-border);
       text-align: center;
@@ -270,11 +312,15 @@
     }
 
     body.dark nav,
-    body.dark footer,
     body.dark .calificacion-section,
     body.dark .beca-card,
-    body.dark tbody tr:hover {
+    body.dark tbody tr:hover,
+    body.dark thead {
       background-color: #2c2c2c;
+    }
+
+    body.dark footer {
+      background-color: #2a2a2a;
     }
 
     body.dark .beca-logo {
@@ -284,6 +330,10 @@
     body.dark .form-group input,
     body.dark .form-group select {
       background-color: #3a3a3a;
+    }
+
+    body.dark .table-container {
+      background-color: #222224;
     }
 
     /* Layout */
@@ -336,7 +386,7 @@
   </header>
 
   <nav>
-    <a href="estas_becado_home_v2.html">¿Estás Becado?</a>
+    <a href="estas_becado_home_v2.html">Inicio</a>
     <a href="estas_becado_becas_disponibles_v2.html" class="active">¿A qué Becas puedo aplicar?</a>
     <a href="estas_becado_busqueda_v2.html">Búsqueda de Becas</a>
     <div class="nav-right">

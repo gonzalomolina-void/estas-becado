@@ -1,7 +1,7 @@
-# Style Tile - ¿Estás Becado? (V2)
+# Style Tile - ¿Estás Becado? (v3)
 
 **Proyecto:** Plataforma de búsqueda de becas argentinas
-**Sprint:** 5 - Prototipo V2
+**Sprint:** 5 - Prototipo v3
 **Fecha:** Noviembre 2025
 **Universidad:** UNComa
 
@@ -47,7 +47,9 @@
 | **Texto Claro** | `#f8f8f8` | `--color-text` | Texto principal |
 | **Texto Secundario**| `#bdbdbd` | `--color-secondary`| Texto de apoyo |
 | **Borde Oscuro** | `#3a3a3a` | `--color-border` | Bordes y divisores |
-| **Contenedor Oscuro**| `#2c2c2c` | N/A | Fondo de `nav`, `footer`, `cards` |
+| **Fondo Contenedor Oscuro**| `#2c2c2c` | N/A | Fondo de `nav`, `cards`, `calificacion-section`, `thead`, `tbody tr:hover` |
+| **Fondo Footer Oscuro** | `#2a2a2a` | N/A | Fondo del pie de página en modo oscuro |
+| **Fondo Contenedor Tabla Oscuro** | `#222224` | N/A | Fondo de `.table-container` en modo oscuro |
 | **Input Background**| `#3a3a3a` | N/A | Campos de formulario |
 
 ---
@@ -125,13 +127,47 @@ font-weight: 600;
   - **Border Radius:** `8px`
   - **Focus:** `border-color: var(--color-accent)`
 
-### Tabla (`.table-container`)
+### Tabla
 
-- **Contenedor:** Borde `1px solid var(--color-border)`, Radius `8px`
-- **Header (`thead`):** Fondo `#f8f8f8`
-- **Celdas (`th`, `td`):** `padding: 1rem`, `border-bottom: 1px solid var(--color-border)`
-- **Row Hover (`tbody tr:hover`):** Fondo `#fafafa` (Light), `#2c2c2c` (Dark)
+- **Contenedor (`.table-container`):**
+  - `overflow-x: auto`
+  - `border: 1px solid var(--color-border)`
+  - `border-radius: 8px`
+  - `background-color: var(--color-bg)`
+  - **Dark Mode:** `background-color: #222224`
 
+- **Tabla (`table`):**
+  - `width: 100%`
+  - `border-collapse: collapse`
+  - `font-size: 0.9rem`
+
+- **Encabezado (`thead`):**
+  - `background-color: #f8f8f8`
+  - **Dark Mode:** `background-color: #2c2c2c`
+
+- **Celdas de Encabezado (`th`):**
+  - `font-weight: 600`
+  - `padding: 1rem`
+  - `text-align: left`
+  - `border-bottom: 1px solid var(--color-border)`
+
+- **Celdas de Datos (`td`):**
+  - `padding: 1rem`
+  - `text-align: left`
+  - `border-bottom: 1px solid var(--color-border)`
+
+- **Fila Hover (`tbody tr:hover`):**
+  - `background-color: #fafafa` (Light Mode)
+  - `background-color: #2c2c2c` (Dark Mode)
+
+- **Última Fila (`tbody tr:last-child td`):**
+  - `border-bottom: none`
+
+- **Estados (`.status`):**
+  - `font-weight: 600`
+  - **Aprobado (`.status-aprobado`):** `color: var(--color-success)`
+  - **En Evaluación (`.status-evaluacion`):** `color: var(--color-warning)`
+  - **Rechazado (`.status-rechazado`):** `color: var(--color-danger)`
 ---
 
 ## 5. Iconografía
