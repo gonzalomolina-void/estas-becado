@@ -1,15 +1,17 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Inicio - ¿Estás Becado?</title>
+  <title>Búsqueda de Becas - ¿Estás Becado?</title>
   <link rel="apple-touch-icon" sizes="180x180" href="images/apple-touch-icon.png">
   <link rel="icon" type="image/png" sizes="32x32" href="images/favicon-32x32.png">
   <link rel="icon" type="image/png" sizes="16x16" href="images/favicon-16x16.png">
   <link rel="manifest" href="images/site.webmanifest">
   <link rel="shortcut icon" href="images/favicon.ico">
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Poppins:wght@400;600&display=swap"
+    rel="stylesheet">
   <script src="https://unpkg.com/lucide@latest"></script>
   <style>
     :root {
@@ -52,15 +54,15 @@
       font-weight: 600;
       color: var(--color-text);
       text-decoration: none;
-      display: inline-block;
     }
-    
+
     header .logo span {
       color: var(--color-accent);
     }
 
     header .logo-img {
-      height: 50px; /* Adjust as needed */
+      height: 50px;
+      /* Adjust as needed */
       width: auto;
       vertical-align: middle;
     }
@@ -85,7 +87,8 @@
       transition: background 0.2s, color 0.2s;
     }
 
-    nav a:hover, nav a.active {
+    nav a:hover,
+    nav a.active {
       background-color: var(--color-accent);
       color: #fff;
     }
@@ -112,44 +115,112 @@
       padding: 0 1.5rem;
     }
 
+    h2 {
+      font-family: 'Poppins', sans-serif;
+      color: var(--color-text);
+      margin-top: 0;
+      margin-bottom: 2rem;
+      text-align: center;
+      font-size: 2.5rem;
+    }
+
+    .search-controls {
+      display: flex;
+      gap: 1rem;
+      margin-bottom: 1.5rem;
+      flex-wrap: wrap;
+    }
+
+    .search-container {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      background-color: var(--color-bg);
+      border: 1px solid var(--color-border);
+      border-radius: 8px;
+      padding: 0.5rem 1rem;
+      flex: 1;
+    }
+
+    .search-container input {
+      flex: 1;
+      border: none;
+      outline: none;
+      font-size: 1rem;
+      font-family: 'Inter', sans-serif;
+      background-color: transparent;
+      color: var(--color-text);
+    }
+
+    .search-container i {
+      color: var(--color-secondary);
+    }
+
+    .btn {
+      display: inline-block;
+      background-color: var(--color-accent);
+      color: white;
+      padding: 0.75rem 1.5rem;
+      border-radius: 8px;
+      text-decoration: none;
+      font-weight: 600;
+      transition: background 0.3s;
+      border: none;
+      cursor: pointer;
+    }
+
+    .btn:hover {
+      background-color: #003366;
+    }
+
     .table-container {
       overflow-x: auto;
       border: 1px solid var(--color-border);
       border-radius: 8px;
       background-color: var(--color-bg);
     }
+
     table {
       width: 100%;
       border-collapse: collapse;
       font-size: 0.9rem;
     }
+
     thead {
       background-color: #f8f8f8;
     }
+
     th,
     td {
       padding: 1rem;
       text-align: left;
       border-bottom: 1px solid var(--color-border);
     }
+
     th {
       font-weight: 600;
     }
+
     tbody tr:hover {
       background-color: #fafafa;
     }
+
     tbody tr:last-child td {
       border-bottom: none;
     }
+
     .status {
       font-weight: 600;
     }
+
     .status-aprobado {
       color: var(--color-success);
     }
+
     .status-evaluacion {
       color: var(--color-warning);
     }
+
     .status-rechazado {
       color: var(--color-danger);
     }
@@ -195,63 +266,13 @@
       background-color: #2c2c2c;
     }
 
-    body.dark .table-container {
-      background-color: #222224;
-    }
-
     body.dark footer {
       background-color: #2a2a2a;
     }
 
-    /* Component: Hero Section */
-    .hero {
-        display: flex;
-        gap: 2rem;
-        align-items: flex-start;
-        flex-wrap: wrap;
-    }
-
-    .hero-image {
-      flex: 1 1 300px;
-      background: url('https://images.unsplash.com/photo-1503676260728-1c00da094a0b?auto=format&fit=crop&w=1000&q=80') center/cover no-repeat;
-      border-radius: 12px;
-      min-height: 320px;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.08);
-    }
-
-    .hero-text {
-      flex: 2 1 400px;
-      font-size: 1.05rem;
-      color: var(--color-secondary);
-    }
-
-    .hero-text h2 {
-      font-family: 'Poppins', sans-serif;
-      color: var(--color-text);
-      margin-top: 0;
-      font-size: 2.5rem;
-      text-align: left;
-    }
-
-    .btn {
-      display: inline-block;
-      background-color: var(--color-accent);
-      color: white;
-      padding: 0.75rem 1.5rem;
-      border-radius: 8px;
-      text-decoration: none;
-      font-weight: 600;
-      transition: background 0.3s;
-      border: none;
-      cursor: pointer;
-    }
-
-    .btn:hover {
-      background-color: #003366;
-    }
-
-    .btn-cta {
-        margin-top: 2rem;
+    body.dark .search-container,
+    body.dark .table-container {
+      background-color: #222224;
     }
 
     /* Responsive */
@@ -260,44 +281,42 @@
         flex-direction: column;
         align-items: stretch;
       }
+
       .theme-toggle {
         position: absolute;
         top: 1rem;
         right: 1rem;
       }
+
       main {
         margin: 1.5rem auto;
       }
-      .hero {
-        flex-direction: column;
-        align-items: center;
-      }
-      .hero-text h2 {
+
+      h2 {
         font-size: 2rem;
-        text-align: center;
       }
-      .hero-text {
-        text-align: center;
-      }
-      .btn-cta {
-        width: 100%;
-        text-align: center;
+
+      th,
+      td {
+        padding: 0.75rem 0.5rem;
+        font-size: 0.8rem;
       }
     }
   </style>
 </head>
+
 <body>
   <header>
-    <a href="estas_becado_home_v2.html" class="logo">
+    <a href="index.html" class="logo">
       <img src="images/logo.png" alt="¿Estás Becado?" class="logo-img">
-      ¿Estás <span>Becado?</span>      
+      ¿Estás <span>Becado?</span>
     </a>
   </header>
 
   <nav>
-    <a href="estas_becado_home_v2.html" class="active">Inicio</a>
-    <a href="estas_becado_becas_disponibles_v2.html">¿A qué Becas puedo aplicar?</a>
-    <a href="estas_becado_busqueda_v2.html">Búsqueda de Becas</a>
+    <a href="index.html">Inicio</a>
+    <a href="becas.html">¿A qué Becas puedo aplicar?</a>
+    <a href="busqueda.html" class="active">Búsqueda de Becas</a>
     <div class="nav-right">
       <a href="#">Registro</a>
       <a href="#">Inicio de sesión</a>
@@ -308,15 +327,94 @@
   </nav>
 
   <main>
-    <section class="hero">
-        <div class="hero-image" title="Estudiantes celebrando una beca universitaria"></div>
-        <div class="hero-text">
-          <h2>Tu camino hacia una beca comienza aquí</h2>
-          <p>¿Querés estudiar en el país o en el extranjero? En <strong>¿Estás Becado?</strong> te ayudamos a encontrar las oportunidades académicas que se ajustan a tu perfil, intereses y metas.</p>
-          <p>Accedé a becas de universidades, organismos internacionales y fundaciones que promueven la educación. ¡No dejes pasar la oportunidad de cumplir tu sueño!</p>
-          <a href="estas_becado_becas_disponibles_v2.html" class="btn btn-cta">Descubrir Becas Disponibles</a>
-        </div>
-    </section>
+    <h2>Búsqueda de Becas</h2>
+
+    <div class="search-controls">
+      <div class="search-container">
+        <i data-lucide="search"></i>
+        <input type="text" placeholder="Buscar por nombre, tipo, nivel..." />
+      </div>
+      <button class="btn">Filtros</button>
+    </div>
+
+    <div class="table-container">
+      <table>
+        <thead>
+          <tr>
+            <th>Nombre del postulante</th>
+            <th>Tipo de beca</th>
+            <th>Nivel/Formación</th>
+            <th>Nombre de la beca</th>
+            <th>Estado</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Giacomo Guillizon</td>
+            <td>Nacional</td>
+            <td>Licenciatura</td>
+            <td>Beca Manuel Belgrano</td>
+            <td class="status status-aprobado">Aprobado</td>
+          </tr>
+          <tr>
+            <td>Ana Pérez</td>
+            <td>Provincial (Córdoba)</td>
+            <td>Secundaria</td>
+            <td>Beca Estímulo Joven</td>
+            <td class="status status-evaluacion">En evaluación</td>
+          </tr>
+          <tr>
+            <td>María Rodríguez</td>
+            <td>Privada (Fundación X)</td>
+            <td>Doctorado</td>
+            <td>Beca Fundación X</td>
+            <td class="status status-rechazado">Rechazado</td>
+          </tr>
+          <tr>
+            <td>Luis Fernández</td>
+            <td>Nacional</td>
+            <td>Posgrado</td>
+            <td>Beca CONICET</td>
+            <td class="status status-aprobado">Aprobado</td>
+          </tr>
+          <tr>
+            <td>Sofía Martínez</td>
+            <td>Institucional (Univ. Nacional)</td>
+            <td>Licenciatura</td>
+            <td>Beca Universidad Local</td>
+            <td class="status status-evaluacion">En evaluación</td>
+          </tr>
+          <tr>
+            <td>Carlos Gómez</td>
+            <td>Provincial (Mendoza)</td>
+            <td>Licenciatura</td>
+            <td>Beca Innovación Educativa</td>
+            <td class="status status-aprobado">Aprobado</td>
+          </tr>
+          <tr>
+            <td>Julieta Morales</td>
+            <td>Privada (Fundación YPF)</td>
+            <td>Secundaria</td>
+            <td>Beca Futuro</td>
+            <td class="status status-aprobado">Aprobado</td>
+          </tr>
+          <tr>
+            <td>Tomás Herrera</td>
+            <td>Institucional (UTN)</td>
+            <td>Doctorado</td>
+            <td>Beca Investigación Avanzada</td>
+            <td class="status status-rechazado">Rechazado</td>
+          </tr>
+          <tr>
+            <td>Valentina Torres</td>
+            <td>Provincial (Buenos Aires)</td>
+            <td>Posgrado</td>
+            <td>Beca Desarrollo Académico</td>
+            <td class="status status-evaluacion">En evaluación</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
   </main>
 
   <footer>
@@ -334,18 +432,29 @@
 
     const themeToggleBtn = document.querySelector('.theme-toggle');
     const body = document.body;
+    const themeKey = 'themePreference';
 
-    function toggleTheme() {
-      body.classList.toggle('dark');
-      const isDark = body.classList.contains('dark');
-      themeToggleBtn.innerHTML = isDark ? '<i data-lucide="sun"></i>' : '<i data-lucide="moon"></i>';
+    function applyTheme(theme) {
+      if (theme === 'dark') {
+        body.classList.add('dark');
+        themeToggleBtn.innerHTML = '<i data-lucide="sun"></i>';
+      } else {
+        body.classList.remove('dark');
+        themeToggleBtn.innerHTML = '<i data-lucide="moon"></i>';
+      }
       lucide.createIcons();
     }
 
-    // Set initial icon
-    const isDark = body.classList.contains('dark');
-    themeToggleBtn.innerHTML = isDark ? '<i data-lucide="sun"></i>' : '<i data-lucide="moon"></i>';
-    lucide.createIcons();
+    function toggleTheme() {
+      const isDark = body.classList.toggle('dark');
+      const newTheme = isDark ? 'dark' : 'light';
+      localStorage.setItem(themeKey, newTheme);
+      applyTheme(newTheme);
+    }
+
+    const savedTheme = localStorage.getItem(themeKey);
+    applyTheme(savedTheme || 'light');
   </script>
 </body>
+
 </html>
