@@ -1,2 +1,2 @@
 # estas-becado
-Prototipo de Estas Becado para la catedra de Diseño Gráfico
+Prototipo de Estás Becado para la catedra de Diseño Gráfico
