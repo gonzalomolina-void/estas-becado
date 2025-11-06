@@ -379,16 +379,16 @@
 
 <body>
   <header>
-    <a href="estas_becado_home_v2.html" class="logo">
+    <a href="index.html" class="logo">
       <img src="images/logo.png" alt="¿Estás Becado?" class="logo-img">
       ¿Estás <span>Becado?</span>
     </a>
   </header>
 
   <nav>
-    <a href="estas_becado_home_v2.html">Inicio</a>
-    <a href="estas_becado_becas_disponibles_v2.html" class="active">¿A qué Becas puedo aplicar?</a>
-    <a href="estas_becado_busqueda_v2.html">Búsqueda de Becas</a>
+    <a href="index.html">Inicio</a>
+    <a href="becas.html" class="active">¿A qué Becas puedo aplicar?</a>
+    <a href="busqueda.html">Búsqueda de Becas</a>
     <div class="nav-right">
       <a href="#">Registro</a>
       <a href="#">Inicio de sesión</a>
@@ -509,18 +509,28 @@
 
     const themeToggleBtn = document.querySelector('.theme-toggle');
     const body = document.body;
+    const themeKey = 'themePreference';
 
-    function toggleTheme() {
-      body.classList.toggle('dark');
-      const isDark = body.classList.contains('dark');
-      themeToggleBtn.innerHTML = isDark ? '<i data-lucide="sun"></i>' : '<i data-lucide="moon"></i>';
+    function applyTheme(theme) {
+      if (theme === 'dark') {
+        body.classList.add('dark');
+        themeToggleBtn.innerHTML = '<i data-lucide="sun"></i>';
+      } else {
+        body.classList.remove('dark');
+        themeToggleBtn.innerHTML = '<i data-lucide="moon"></i>';
+      }
       lucide.createIcons();
     }
 
-    // Set initial icon
-    const isDark = body.classList.contains('dark');
-    themeToggleBtn.innerHTML = isDark ? '<i data-lucide="sun"></i>' : '<i data-lucide="moon"></i>';
-    lucide.createIcons();
+    function toggleTheme() {
+      const isDark = body.classList.toggle('dark');
+      const newTheme = isDark ? 'dark' : 'light';
+      localStorage.setItem(themeKey, newTheme);
+      applyTheme(newTheme);
+    }
+
+    const savedTheme = localStorage.getItem(themeKey);
+    applyTheme(savedTheme || 'light');
   </script>
 </body>
 
