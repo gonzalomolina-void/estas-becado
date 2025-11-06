@@ -419,6 +419,19 @@
       background-color: #222224;
     }
 
+    .hamburger {
+      display: none;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 0;
+      color: var(--color-text);
+    }
+
+    body.dark .hamburger {
+      color: var(--color-text);
+    }
+
     /* Layout */
     @media (min-width: 1024px) {
       .content-wrapper {
@@ -434,19 +447,53 @@
     }
 
     @media (max-width: 767px) {
+      header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 1rem; /* Adjusted padding */
+      }
+
+      .hamburger {
+        display: block;
+      }
+
       nav {
+        display: none;
+        flex-direction: column;
+        align-items: stretch;
+        width: 100%;
+        background-color: var(--color-bg);
+        position: absolute;
+        top: 85px; /* Height of the header */
+        left: 0;
+        z-index: 10;
+        border-bottom: 1px solid var(--color-border);
+      }
+
+      nav.active {
+        display: flex;
+      }
+
+      .nav-right {
+        margin-left: 0;
+        display: flex;
         flex-direction: column;
         align-items: stretch;
       }
-
+      
       .theme-toggle {
-        position: absolute;
-        top: 1rem;
-        right: 1rem;
+        align-self: center;
+        margin: 0.5rem 0;
       }
 
       main {
         margin: 1.5rem auto;
+        padding: 0 1rem; /* Adjusted padding */
+      }
+
+      header .logo {
+        font-size: 1.75rem; /* Adjusted logo size */
       }
 
       h2 {
@@ -460,6 +507,12 @@
       .hero {
         flex-direction: column;
         align-items: center;
+      }
+      .hero-image {
+        width: 100%; /* Ensure it takes full width */
+        height: 200px; /* A fixed height for mobile */
+        background-position: center;
+        background-size: cover;
       }
       .hero-text h2 {
         font-size: 2rem;
@@ -476,5 +529,43 @@
       td {
         padding: 0.75rem 0.5rem;
         font-size: 0.8rem;
+      }
+
+      /* Table transformation to cards */
+      .table-container {
+        border: none;
+      }
+      table {
+        border: 0;
+      }
+      thead {
+        display: none; /* Hide table headers */
+      }
+      tr {
+        display: block;
+        margin-bottom: 1rem;
+        border: 1px solid var(--color-border);
+        border-radius: 8px;
+        padding: 1rem;
+      }
+      td {
+        display: block;
+        text-align: right; /* Align content to the right */
+        padding: 0.5rem;
+        border-bottom: 1px dotted var(--color-border);
+      }
+      td::before {
+        content: attr(data-label); /* Use data-label as pseudo-element content */
+        float: left; /* Align label to the left */
+        font-weight: 600;
+        margin-right: 1rem;
+      }
+      td:last-child {
+        border-bottom: 0;
+      }
+
+      /* Form spacing adjustment */
+      .form-group {
+        margin-bottom: 1rem;
       }
     }

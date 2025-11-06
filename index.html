@@ -19,9 +19,12 @@
       <img src="images/logo.png" alt="¿Estás Becado?" class="logo-img">
       ¿Estás <span>Becado?</span>      
     </a>
+    <button class="hamburger" id="hamburger-button" aria-label="menu" aria-expanded="false">
+        <i data-lucide="menu"></i>
+    </button>
   </header>
 
-  <nav>
+  <nav id="nav-menu">
     <a href="index.html" class="active">Inicio</a>
     <a href="becas.html">¿A qué Becas puedo aplicar?</a>
     <a href="busqueda.html">Estado de Becas</a>
@@ -41,7 +44,7 @@
           <h2>Tu camino hacia una beca comienza aquí</h2>
           <p>¿Querés estudiar en el país o en el extranjero? En <strong>¿Estás Becado?</strong> te ayudamos a encontrar las oportunidades académicas que se ajustan a tu perfil, intereses y metas.</p>
           <p>Accedé a becas de universidades, organismos internacionales y fundaciones que promueven la educación. ¡No dejes pasar la oportunidad de cumplir tu sueño!</p>
-          <a href="estas_becado_becas_disponibles_v2.html" class="btn btn-cta">Descubrir Becas Disponibles</a>
+          <a href="becas.html" class="btn btn-cta">Descubrir Becas Disponibles</a>
         </div>
     </section>
   </main>
@@ -84,6 +87,20 @@
 
     const savedTheme = localStorage.getItem(themeKey);
     applyTheme(savedTheme || 'light');
+
+    const hamburgerButton = document.getElementById('hamburger-button');
+    const navMenu = document.getElementById('nav-menu');
+
+    hamburgerButton.addEventListener('click', () => {
+      const isExpanded = navMenu.classList.toggle('active');
+      hamburgerButton.setAttribute('aria-expanded', isExpanded);
+      if (isExpanded) {
+        hamburgerButton.innerHTML = '<i data-lucide="x"></i>';
+      } else {
+        hamburgerButton.innerHTML = '<i data-lucide="menu"></i>';
+      }
+      lucide.createIcons();
+    });
   </script>
 </body>
 </html>
