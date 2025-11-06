@@ -90,8 +90,14 @@
       color: #fff;
     }
 
-    .theme-toggle {
+    .nav-right {
       margin-left: auto;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .theme-toggle {
       cursor: pointer;
       background: none;
       border: none;
@@ -104,6 +110,48 @@
       width: 100%;
       margin: 3rem auto;
       padding: 0 1.5rem;
+    }
+
+    .table-container {
+      overflow-x: auto;
+      border: 1px solid var(--color-border);
+      border-radius: 8px;
+      background-color: var(--color-bg);
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.9rem;
+    }
+    thead {
+      background-color: #f8f8f8;
+    }
+    th,
+    td {
+      padding: 1rem;
+      text-align: left;
+      border-bottom: 1px solid var(--color-border);
+    }
+    th {
+      font-weight: 600;
+    }
+    tbody tr:hover {
+      background-color: #fafafa;
+    }
+    tbody tr:last-child td {
+      border-bottom: none;
+    }
+    .status {
+      font-weight: 600;
+    }
+    .status-aprobado {
+      color: var(--color-success);
+    }
+    .status-evaluacion {
+      color: var(--color-warning);
+    }
+    .status-rechazado {
+      color: var(--color-danger);
     }
 
     footer {
@@ -141,8 +189,14 @@
       --color-border: #3a3a3a;
     }
 
-    body.dark nav {
+    body.dark nav,
+    body.dark thead,
+    body.dark tbody tr:hover {
       background-color: #2c2c2c;
+    }
+
+    body.dark .table-container {
+      background-color: #222224;
     }
 
     body.dark footer {
@@ -241,12 +295,16 @@
   </header>
 
   <nav>
-    <a href="estas_becado_home_v2.html" class="active">¿Estás Becado?</a>
+    <a href="estas_becado_home_v2.html" class="active">Inicio</a>
     <a href="estas_becado_becas_disponibles_v2.html">¿A qué Becas puedo aplicar?</a>
     <a href="estas_becado_busqueda_v2.html">Búsqueda de Becas</a>
-    <button class="theme-toggle" onclick="toggleTheme()">
+    <div class="nav-right">
+      <a href="#">Registro</a>
+      <a href="#">Inicio de sesión</a>
+      <button class="theme-toggle" onclick="toggleTheme()">
         <i data-lucide="moon"></i>
-    </button>
+      </button>
+    </div>
   </nav>
 
   <main>
