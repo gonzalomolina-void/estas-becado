@@ -90,8 +90,14 @@
       color: #fff;
     }
 
-    .theme-toggle {
+    .nav-right {
       margin-left: auto;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .theme-toggle {
       cursor: pointer;
       background: none;
       border: none;
@@ -244,9 +250,13 @@
     <a href="estas_becado_home_v2.html" class="active">¿Estás Becado?</a>
     <a href="estas_becado_becas_disponibles_v2.html">¿A qué Becas puedo aplicar?</a>
     <a href="estas_becado_busqueda_v2.html">Búsqueda de Becas</a>
-    <button class="theme-toggle" onclick="toggleTheme()">
+    <div class="nav-right">
+      <a href="#">Registro</a>
+      <a href="#">Inicio de sesión</a>
+      <button class="theme-toggle" onclick="toggleTheme()">
         <i data-lucide="moon"></i>
-    </button>
+      </button>
+    </div>
   </nav>
 
   <main>
