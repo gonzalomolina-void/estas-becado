@@ -47,7 +47,7 @@
       <div class="search-container">
         <i data-lucide="search"></i>
         <input type="text" placeholder="Buscar por nombre, tipo, nivel..." />
-        <button class="btn">Filtros</button>
+        <button class="btn" id="search-button">Filtros</button>
       </div>
     </div>
 
@@ -183,6 +183,14 @@
       }
       lucide.createIcons();
     });
+
+    // Simulated functionality for busqueda.html search button
+    const searchButton = document.getElementById('search-button');
+    if (searchButton) {
+      searchButton.addEventListener('click', () => {
+        alert('¡Búsqueda simulada! En una versión futura, los resultados se actualizarán aquí.');
+      });
+    }
   </script>
 </body>
 

@@ -83,7 +83,7 @@
       <aside class="right-section">
         <div class="calificacion-section">
           <h3>¿A que becas califico?</h3>
-          <form>
+          <form id="calificacion-form">
             <div class="form-grid">
               <div class="form-group">
                 <label for="edad">Edad</label>
@@ -188,6 +188,15 @@
       }
       lucide.createIcons();
     });
+
+    // Simulated functionality for becas.html form
+    const calificacionForm = document.getElementById('calificacion-form');
+    if (calificacionForm) {
+      calificacionForm.addEventListener('submit', (event) => {
+        event.preventDefault(); // Prevent actual form submission
+        alert('¡Búsqueda simulada! En una versión futura, los resultados se actualizarán aquí.');
+      });
+    }
   </script>
 </body>
 
