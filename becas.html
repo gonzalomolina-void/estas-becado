@@ -44,6 +44,9 @@
     <div class="content-wrapper">
       <section class="left-section">
         <h2>Becas disponibles</h2>
+        <div class="loader-container hidden">
+          <div class="loader"></div>
+        </div>
         <div class="becas-grid">
           <div class="beca-card">
             <div class="beca-logo">Logo Beca</div>
@@ -108,21 +111,21 @@
                 </select>
               </div>
               <div class="form-group">
-                <label for="institucion">Institución de estudio</label>
+                <label for="institucion">Institución de estudio<span id="institucion-loader" class="mini-loader hidden"></span></label>
                 <select id="institucion" name="institucion">
                   <option value="">Seleccione una opción</option>
                   <option value="unc">Universidad Nacional de Córdoba</option>
                 </select>
               </div>
               <div class="form-group">
-                <label for="tipo">Tipo de beca buscada</label>
+                <label for="tipo">Tipo de beca buscada<span id="tipo-loader" class="mini-loader hidden"></span></label>
                 <select id="tipo" name="tipo">
                   <option value="">Seleccione una opción</option>
                   <option value="nacional">Nacional</option>
                 </select>
               </div>
               <div class="form-group">
-                <label for="campo">Campo de estudio o interés</label>
+                <label for="campo">Campo de estudio o interés<span id="campo-loader" class="mini-loader hidden"></span></label>
                 <select id="campo" name="campo">
                   <option value="">Seleccione una opción</option>
                   <option value="ingenieria">Ingeniería</option>
@@ -189,13 +192,136 @@
       lucide.createIcons();
     });
 
-    // Simulated functionality for becas.html form
+    // Main search simulation
     const calificacionForm = document.getElementById('calificacion-form');
     if (calificacionForm) {
+      const becasGrid = document.querySelector('.becas-grid');
+      const mainLoader = document.querySelector('.left-section .loader-container');
+
       calificacionForm.addEventListener('submit', (event) => {
-        event.preventDefault(); // Prevent actual form submission
-        alert('¡Búsqueda simulada! En una versión futura, los resultados se actualizarán aquí.');
+        event.preventDefault();
+        
+        becasGrid.classList.add('hidden');
+        mainLoader.classList.remove('hidden');
+
+        setTimeout(() => {
+          becasGrid.classList.remove('hidden');
+          mainLoader.classList.add('hidden');
+          // alert('¡Búsqueda simulada! En una versión futura, los resultados se actualizarán aquí.');
+        }, 2000);
       });
+    }
+
+    // Dependent dropdowns simulation
+    const nivelSelect = document.getElementById('nivel');
+    const provinciaSelect = document.getElementById('provincia');
+    const institucionSelect = document.getElementById('institucion');
+    const tipoSelect = document.getElementById('tipo');
+    const campoSelect = document.getElementById('campo');
+
+    const institucionLoader = document.getElementById('institucion-loader');
+    const tipoLoader = document.getElementById('tipo-loader');
+    const campoLoader = document.getElementById('campo-loader');
+
+    const dependencyData = {
+      provincias: {
+        'ba': {
+          instituciones: { 'uba': 'Universidad de Buenos Aires', 'unlp': 'Universidad Nacional de La Plata' },
+          tipos: ['nacional', 'provincial_ba']
+        },
+        'cordoba': {
+          instituciones: { 'unc': 'Universidad Nacional de Córdoba' },
+          tipos: ['nacional', 'provincial_cordoba']
+        }
+      },
+      niveles: {
+        'secundaria': { campos: ['general'] },
+        'licenciatura': { campos: ['ingenieria', 'ciencias_sociales', 'humanidades'] },
+        'posgrado': { campos: ['investigacion', 'ciencias_aplicadas'] },
+        'doctorado': { campos: ['investigacion_avanzada'] }
+      },
+      campos: {
+        'general': 'Estudios Generales',
+        'ingenieria': 'Ingeniería',
+        'ciencias_sociales': 'Ciencias Sociales',
+        'humanidades': 'Humanidades',
+        'investigacion': 'Investigación',
+        'ciencias_aplicadas': 'Ciencias Aplicadas',
+        'investigacion_avanzada': 'Investigación Avanzada'
+      },
+      tipos: {
+        'nacional': 'Nacional',
+        'provincial_ba': 'Provincial (Buenos Aires)',
+        'provincial_cordoba': 'Provincial (Córdoba)'
+      }
+    };
+
+    function updateDropdown(selectElement, options, selectedValue) {
+      const currentValue = selectElement.value;
+      selectElement.innerHTML = '<option value="">Seleccione una opción</option>';
+      let valueFound = false;
+      for (const [value, text] of Object.entries(options)) {
+        const option = document.createElement('option');
+        option.value = value;
+        option.textContent = text;
+        if (value === currentValue) {
+          option.selected = true;
+          valueFound = true;
+        }
+        selectElement.appendChild(option);
+      }
+      selectElement.disabled = Object.keys(options).length === 0;
+    }
+
+    function onProvinciaChange() {
+      institucionLoader.classList.remove('hidden');
+      tipoLoader.classList.remove('hidden');
+      institucionSelect.disabled = true;
+      tipoSelect.disabled = true;
+
+      setTimeout(() => {
+        const provincia = provinciaSelect.value;
+        const data = dependencyData.provincias[provincia] || {};
+        
+        const institucionOptions = data.instituciones || {};
+        updateDropdown(institucionSelect, institucionOptions);
+
+        const tipoOptions = (data.tipos || []).reduce((acc, tipoKey) => {
+          acc[tipoKey] = dependencyData.tipos[tipoKey];
+          return acc;
+        }, {});
+        updateDropdown(tipoSelect, tipoOptions);
+        
+        institucionLoader.classList.add('hidden');
+        tipoLoader.classList.add('hidden');
+      }, 500);
+    }
+
+    function onNivelChange() {
+      campoLoader.classList.remove('hidden');
+      campoSelect.disabled = true;
+
+      setTimeout(() => {
+        const nivel = nivelSelect.value;
+        const data = dependencyData.niveles[nivel] || {};
+        
+        const campoOptions = (data.campos || []).reduce((acc, campoKey) => {
+          acc[campoKey] = dependencyData.campos[campoKey];
+          return acc;
+        }, {});
+        updateDropdown(campoSelect, campoOptions);
+
+        campoLoader.classList.add('hidden');
+      }, 500);
+    }
+
+    if (nivelSelect && provinciaSelect && institucionSelect && tipoSelect && campoSelect) {
+      provinciaSelect.addEventListener('change', onProvinciaChange);
+      nivelSelect.addEventListener('change', onNivelChange);
+
+      // Initial population
+      onProvinciaChange();
+      onNivelChange();
     }
   </script>
 </body>

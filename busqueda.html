@@ -51,147 +51,316 @@
       </div>
     </div>
 
-    <div class="table-container">
-      <table>
-        <thead>
-          <tr>
-            <th>Nombre del postulante</th>
-            <th>Tipo de beca</th>
-            <th>Nivel/Formación</th>
-            <th>Nombre de la beca</th>
-            <th>Estado</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td data-label="Nombre del postulante">Giacomo Guillizon</td>
-            <td data-label="Tipo de beca">Nacional</td>
-            <td data-label="Nivel/Formación">Licenciatura</td>
-            <td data-label="Nombre de la beca">Beca Manuel Belgrano</td>
-            <td data-label="Estado" class="status status-aprobado">Aprobado</td>
-          </tr>
-          <tr>
-            <td data-label="Nombre del postulante">Ana Pérez</td>
-            <td data-label="Tipo de beca">Provincial (Córdoba)</td>
-            <td data-label="Nivel/Formación">Secundaria</td>
-            <td data-label="Nombre de la beca">Beca Estímulo Joven</td>
-            <td data-label="Estado" class="status status-evaluacion">En evaluación</td>
-          </tr>
-          <tr>
-            <td data-label="Nombre del postulante">María Rodríguez</td>
-            <td data-label="Tipo de beca">Privada (Fundación X)</td>
-            <td data-label="Nivel/Formación">Doctorado</td>
-            <td data-label="Nombre de la beca">Beca Fundación X</td>
-            <td data-label="Estado" class="status status-rechazado">Rechazado</td>
-          </tr>
-          <tr>
-            <td data-label="Nombre del postulante">Luis Fernández</td>
-            <td data-label="Tipo de beca">Nacional</td>
-            <td data-label="Nivel/Formación">Posgrado</td>
-            <td data-label="Nombre de la beca">Beca CONICET</td>
-            <td data-label="Estado" class="status status-aprobado">Aprobado</td>
-          </tr>
-          <tr>
-            <td data-label="Nombre del postulante">Sofía Martínez</td>
-            <td data-label="Tipo de beca">Institucional (Univ. Nacional)</td>
-            <td data-label="Nivel/Formación">Licenciatura</td>
-            <td data-label="Nombre de la beca">Beca Universidad Local</td>
-            <td data-label="Estado" class="status status-evaluacion">En evaluación</td>
-          </tr>
-          <tr>
-            <td data-label="Nombre del postulante">Carlos Gómez</td>
-            <td data-label="Tipo de beca">Provincial (Mendoza)</td>
-            <td data-label="Nivel/Formación">Licenciatura</td>
-            <td data-label="Nombre de la beca">Beca Innovación Educativa</td>
-            <td data-label="Estado" class="status status-aprobado">Aprobado</td>
-          </tr>
-          <tr>
-            <td data-label="Nombre del postulante">Julieta Morales</td>
-            <td data-label="Tipo de beca">Privada (Fundación YPF)</td>
-            <td data-label="Nivel/Formación">Secundaria</td>
-            <td data-label="Nombre de la beca">Beca Futuro</td>
-            <td data-label="Estado" class="status status-aprobado">Aprobado</td>
-          </tr>
-          <tr>
-            <td data-label="Nombre del postulante">Tomás Herrera</td>
-            <td data-label="Tipo de beca">Institucional (UTN)</td>
-            <td data-label="Nivel/Formación">Doctorado</td>
-            <td data-label="Nombre de la beca">Beca Investigación Avanzada</td>
-            <td data-label="Estado" class="status status-rechazado">Rechazado</td>
-          </tr>
-          <tr>
-            <td data-label="Nombre del postulante">Valentina Torres</td>
-            <td data-label="Tipo de beca">Provincial (Buenos Aires)</td>
-            <td data-label="Nivel/Formación">Posgrado</td>
-            <td data-label="Nombre de la beca">Beca Desarrollo Académico</td>
-            <td data-label="Estado" class="status status-evaluacion">En evaluación</td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-  </main>
+        <div class="table-container">
 
-  <footer>
-    <p>© 2025 ¿Estás Becado? - Todos los derechos reservados.</p>
-    <div class="footer-socials">
-      <a href="#">Acerca de nosotros</a>
-      <i data-lucide="facebook"></i>
-      <i data-lucide="x"></i>
-      <i data-lucide="instagram"></i>
-      <i data-lucide="linkedin"></i>
-    </div>
-  </footer>
+          <div class="loader-container hidden">
 
-  <script>
-    lucide.createIcons();
+            <div class="loader"></div>
 
-    const themeToggleBtn = document.querySelector('.theme-toggle');
-    const body = document.body;
-    const themeKey = 'themePreference';
+          </div>
 
-    function applyTheme(theme) {
-      if (theme === 'dark') {
-        body.classList.add('dark');
-        themeToggleBtn.innerHTML = '<i data-lucide="sun"></i>';
-      } else {
-        body.classList.remove('dark');
-        themeToggleBtn.innerHTML = '<i data-lucide="moon"></i>';
-      }
-      lucide.createIcons();
-    }
+          <table>
 
-    function toggleTheme() {
-      const isDark = body.classList.toggle('dark');
-      const newTheme = isDark ? 'dark' : 'light';
-      localStorage.setItem(themeKey, newTheme);
-      applyTheme(newTheme);
-    }
+            <thead>
 
-    const savedTheme = localStorage.getItem(themeKey);
-    applyTheme(savedTheme || 'light');
+              <tr>
 
-    const hamburgerButton = document.getElementById('hamburger-button');
-    const navMenu = document.getElementById('nav-menu');
+                <th>Nombre del postulante</th>
 
-    hamburgerButton.addEventListener('click', () => {
-      const isExpanded = navMenu.classList.toggle('active');
-      hamburgerButton.setAttribute('aria-expanded', isExpanded);
-      if (isExpanded) {
-        hamburgerButton.innerHTML = '<i data-lucide="x"></i>';
-      } else {
-        hamburgerButton.innerHTML = '<i data-lucide="menu"></i>';
-      }
-      lucide.createIcons();
-    });
+                <th>Tipo de beca</th>
 
-    // Simulated functionality for busqueda.html search button
-    const searchButton = document.getElementById('search-button');
-    if (searchButton) {
-      searchButton.addEventListener('click', () => {
-        alert('¡Búsqueda simulada! En una versión futura, los resultados se actualizarán aquí.');
-      });
-    }
-  </script>
-</body>
+                <th>Nivel/Formación</th>
 
-</html>
+                <th>Nombre de la beca</th>
+
+                <th>Estado</th>
+
+              </tr>
+
+            </thead>
+
+            <tbody>
+
+              <tr>
+
+                <td data-label="Nombre del postulante">Giacomo Guillizon</td>
+
+                <td data-label="Tipo de beca">Nacional</td>
+
+                <td data-label="Nivel/Formación">Licenciatura</td>
+
+                <td data-label="Nombre de la beca">Beca Manuel Belgrano</td>
+
+                <td data-label="Estado" class="status status-aprobado">Aprobado</td>
+
+              </tr>
+
+              <tr>
+
+                <td data-label="Nombre del postulante">Ana Pérez</td>
+
+                <td data-label="Tipo de beca">Provincial (Córdoba)</td>
+
+                <td data-label="Nivel/Formación">Secundaria</td>
+
+                <td data-label="Nombre de la beca">Beca Estímulo Joven</td>
+
+                <td data-label="Estado" class="status status-evaluacion">En evaluación</td>
+
+              </tr>
+
+              <tr>
+
+                <td data-label="Nombre del postulante">María Rodríguez</td>
+
+                <td data-label="Tipo de beca">Privada (Fundación X)</td>
+
+                <td data-label="Nivel/Formación">Doctorado</td>
+
+                <td data-label="Nombre de la beca">Beca Fundación X</td>
+
+                <td data-label="Estado" class="status status-rechazado">Rechazado</td>
+
+              </tr>
+
+              <tr>
+
+                <td data-label="Nombre del postulante">Luis Fernández</td>
+
+                <td data-label="Tipo de beca">Nacional</td>
+
+                <td data-label="Nivel/Formación">Posgrado</td>
+
+                <td data-label="Nombre de la beca">Beca CONICET</td>
+
+                <td data-label="Estado" class="status status-aprobado">Aprobado</td>
+
+              </tr>
+
+              <tr>
+
+                <td data-label="Nombre del postulante">Sofía Martínez</td>
+
+                <td data-label="Tipo de beca">Institucional (Univ. Nacional)</td>
+
+                <td data-label="Nivel/Formación">Licenciatura</td>
+
+                <td data-label="Nombre de la beca">Beca Universidad Local</td>
+
+                <td data-label="Estado" class="status status-evaluacion">En evaluación</td>
+
+              </tr>
+
+              <tr>
+
+                <td data-label="Nombre del postulante">Carlos Gómez</td>
+
+                <td data-label="Tipo de beca">Provincial (Mendoza)</td>
+
+                <td data-label="Nivel/Formación">Licenciatura</td>
+
+                <td data-label="Nombre de la beca">Beca Innovación Educativa</td>
+
+                <td data-label="Estado" class="status status-aprobado">Aprobado</td>
+
+              </tr>
+
+              <tr>
+
+                <td data-label="Nombre del postulante">Julieta Morales</td>
+
+                <td data-label="Tipo de beca">Privada (Fundación YPF)</td>
+
+                <td data-label="Nivel/Formación">Secundaria</td>
+
+                <td data-label="Nombre de la beca">Beca Futuro</td>
+
+                <td data-label="Estado" class="status status-aprobado">Aprobado</td>
+
+              </tr>
+
+              <tr>
+
+                <td data-label="Nombre del postulante">Tomás Herrera</td>
+
+                <td data-label="Tipo de beca">Institucional (UTN)</td>
+
+                <td data-label="Nivel/Formación">Doctorado</td>
+
+                <td data-label="Nombre de la beca">Beca Investigación Avanzada</td>
+
+                <td data-label="Estado" class="status status-rechazado">Rechazado</td>
+
+              </tr>
+
+              <tr>
+
+                <td data-label="Nombre del postulante">Valentina Torres</td>
+
+                <td data-label="Tipo de beca">Provincial (Buenos Aires)</td>
+
+                <td data-label="Nivel/Formación">Posgrado</td>
+
+                <td data-label="Nombre de la beca">Beca Desarrollo Académico</td>
+
+                <td data-label="Estado" class="status status-evaluacion">En evaluación</td>
+
+              </tr>
+
+            </tbody>
+
+          </table>
+
+        </div>
+
+      </main>
+
+    
+
+      <footer>
+
+        <p>© 2025 ¿Estás Becado? - Todos los derechos reservados.</p>
+
+        <div class="footer-socials">
+
+          <a href="#">Acerca de nosotros</a>
+
+          <i data-lucide="facebook"></i>
+
+          <i data-lucide="x"></i>
+
+          <i data-lucide="instagram"></i>
+
+          <i data-lucide="linkedin"></i>
+
+        </div>
+
+      </footer>
+
+    
+
+      <script>
+
+        lucide.createIcons();
+
+    
+
+        const themeToggleBtn = document.querySelector('.theme-toggle');
+
+        const body = document.body;
+
+        const themeKey = 'themePreference';
+
+    
+
+        function applyTheme(theme) {
+
+          if (theme === 'dark') {
+
+            body.classList.add('dark');
+
+            themeToggleBtn.innerHTML = '<i data-lucide="sun"></i>';
+
+          } else {
+
+            body.classList.remove('dark');
+
+            themeToggleBtn.innerHTML = '<i data-lucide="moon"></i>';
+
+          }
+
+          lucide.createIcons();
+
+        }
+
+    
+
+        function toggleTheme() {
+
+          const isDark = body.classList.toggle('dark');
+
+          const newTheme = isDark ? 'dark' : 'light';
+
+          localStorage.setItem(themeKey, newTheme);
+
+          applyTheme(newTheme);
+
+        }
+
+    
+
+        const savedTheme = localStorage.getItem(themeKey);
+
+        applyTheme(savedTheme || 'light');
+
+    
+
+        const hamburgerButton = document.getElementById('hamburger-button');
+
+        const navMenu = document.getElementById('nav-menu');
+
+    
+
+        hamburgerButton.addEventListener('click', () => {
+
+          const isExpanded = navMenu.classList.toggle('active');
+
+          hamburgerButton.setAttribute('aria-expanded', isExpanded);
+
+          if (isExpanded) {
+
+            hamburgerButton.innerHTML = '<i data-lucide="x"></i>';
+
+          } else {
+
+            hamburgerButton.innerHTML = '<i data-lucide="menu"></i>';
+
+          }
+
+          lucide.createIcons();
+
+        });
+
+    
+
+        // Simulated functionality for busqueda.html search button
+
+        const searchButton = document.getElementById('search-button');
+
+        if (searchButton) {
+
+          const table = document.querySelector('.table-container table');
+
+          const loader = document.querySelector('.loader-container');
+
+    
+
+          searchButton.addEventListener('click', () => {
+
+            table.classList.add('hidden');
+
+            loader.classList.remove('hidden');
+
+    
+
+            setTimeout(() => {
+
+              table.classList.remove('hidden');
+
+              loader.classList.add('hidden');
+
+            }, 2000);
+
+          });
+
+        }
+
+      </script>
+
+    </body>
+
+    
+
+    </html>
+
+    
