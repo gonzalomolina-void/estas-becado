@@ -477,8 +477,18 @@
     /* Layout */
     @media (min-width: 1024px) {
       .content-wrapper {
-        grid-template-columns: 1fr 400px;
+        grid-template-columns: 300px 1fr; /* Narrower form, wider content */
         align-items: start;
+      }
+
+
+
+      .left-section h2 {
+        text-align: left; /* Align title to left in wider section */
+      }
+
+      .right-section h3 {
+        text-align: left; /* Align title to left in narrower form section */
       }
     }
 
